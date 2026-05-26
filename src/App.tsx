@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import './styles.css'
 
 // ─── Lenis smooth scroll ────────────────────────────────────────────────────
@@ -25,9 +25,6 @@ import FloatingCTA from './components/FloatingCTA'
 
 export default function App() {
   const [loaded, setLoaded] = useState(false)
-  const cursorDotRef = useRef<HTMLDivElement>(null)
-  const cursorGlowRef = useRef<HTMLDivElement>(null)
-
   // ── Lenis smooth scroll ──────────────────────────────────────────────────
   // Only activate after the loading screen exits — prevents scroll fighting
   // with the loading animation and keeps the first paint clean.
@@ -37,22 +34,6 @@ export default function App() {
     wheelMultiplier: 1,     // 1 = natural, >1 = faster per wheel tick
     touchMultiplier: 2,     // mobile touch sensitivity
   })
-
-  // ── Custom cursor ────────────────────────────────────────────────────────
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      if (cursorDotRef.current) {
-        cursorDotRef.current.style.left = e.clientX + 'px'
-        cursorDotRef.current.style.top = e.clientY + 'px'
-      }
-      if (cursorGlowRef.current) {
-        cursorGlowRef.current.style.left = e.clientX + 'px'
-        cursorGlowRef.current.style.top = e.clientY + 'px'
-      }
-    }
-    window.addEventListener('mousemove', onMove)
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [])
 
   return (
     <>
@@ -70,12 +51,6 @@ export default function App() {
         <div className="vignette" aria-hidden="true" />
         <ParticleField />
         <ProgressIndicator />
-
-        {/* Custom cursor (desktop only) */}
-        <div className="cursor" aria-hidden="true">
-          <div ref={cursorGlowRef} className="cursor-glow" />
-          <div ref={cursorDotRef} className="cursor-dot" />
-        </div>
 
         {/* Navigation */}
         <Navigation />
