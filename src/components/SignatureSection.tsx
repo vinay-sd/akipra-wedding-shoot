@@ -57,11 +57,12 @@ export default function SignatureSection() {
       </motion.div>
 
       {/* Feature cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px', marginBottom: '80px' }}>
+      <div className="signature-features-grid" style={{ color: 'var(--text)', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px', marginBottom: '80px' }}>
         {features.map((f, i) => (
           <motion.div
             key={f.title}
             style={{
+              color: 'var(--text)',
               padding: '48px 40px',
               background: i === 1 ? 'rgba(201,169,110,0.06)' : 'rgba(255,255,255,0.02)',
               border: '1px solid rgba(201,169,110,0.08)',
@@ -73,7 +74,8 @@ export default function SignatureSection() {
             whileHover={{ background: 'rgba(201,169,110,0.06)' }}
           >
             <div style={{
-              fontSize: '32px', color: 'var(--gold)',
+              color: 'var(--text)',
+              fontSize: '32px',
               marginBottom: '24px', lineHeight: '1'
             }}>
               {f.icon}
@@ -81,11 +83,11 @@ export default function SignatureSection() {
             <h3 style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: '24px', fontWeight: '400',
-              color: 'var(--ivory)', marginBottom: '16px'
+              color: 'var(--text)', marginBottom: '16px'
             }}>
               {f.title}
             </h3>
-            <p style={{ fontSize: '14px', lineHeight: '1.8', color: 'rgba(251,247,241,0.55)' }}>
+            <p style={{ fontSize: '14px', lineHeight: '1.8', color: 'var(--text-muted)' }}>
               {f.desc}
             </p>
           </motion.div>
@@ -110,58 +112,40 @@ export default function SignatureSection() {
           </h3>
         </div>
 
-        <div
-          ref={sliderRef}
-          className="before-after-slider"
-          style={{ height: '500px', maxWidth: '900px', margin: '0 auto', cursor: 'ew-resize' }}
-          onMouseMove={handleSliderMove}
-          onTouchMove={handleSliderMove}
-        >
-          {/* After image (cinematic) */}
-          <img
-            src="/images/bride-portraits/DSC00730.JPG"
-            alt="After"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
-
-          {/* Before (original) */}
-          <div style={{
-            position: 'absolute', top: 0, left: 0,
-            width: `${sliderPos}%`, height: '100%', overflow: 'hidden',
-            borderRight: '2px solid var(--gold)'
-          }}>
+        {/* Wrapper gives the slider its size; inner elements are all absolutely positioned */}
+        <div className="slider-outer">
+          <div
+            ref={sliderRef}
+            className="before-after-slider"
+            onMouseMove={handleSliderMove}
+            onTouchMove={handleSliderMove}
+          >
+            {/* After image — base layer (cinematic grade) */}
             <img
               src="/images/bride-portraits/DSC00730.JPG"
-              alt="Before"
-              style={{ width: '900px', maxWidth: 'none', height: '100%', objectFit: 'cover', objectPosition: 'left', filter: 'sepia(0) contrast(0.9) brightness(1) saturate(1)' }}
+              alt="After — Cinematic Grade"
+              className="slider-img slider-img-after"
             />
-            <div style={{
-              position: 'absolute', top: '50%', right: '12px', transform: 'translateY(-50%)',
-              background: 'rgba(8,8,8,0.8)', padding: '6px 14px',
-              fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)'
-            }}>
-              Original
+
+            {/* Before image — clipped overlay (original) */}
+            <div className="slider-before-wrap" style={{ width: `${sliderPos}%` }}>
+              <img
+                src="/images/bride-portraits/DSC00730.JPG"
+                alt="Before — Original"
+                className="slider-img slider-img-before"
+              />
+              <span className="slider-label slider-label-before">Original</span>
             </div>
-          </div>
 
-          <div style={{
-            position: 'absolute', top: '50%', left: `${sliderPos}%`,
-            transform: 'translate(-50%, -50%)',
-            width: '40px', height: '40px', borderRadius: '50%',
-            background: 'var(--gold)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 20px rgba(201,169,110,0.4)',
-            pointerEvents: 'none'
-          }}>
-            <span style={{ color: '#080808', fontSize: '12px', fontWeight: '700' }}>⟷</span>
-          </div>
+            {/* Divider handle */}
+            <div className="slider-handle" style={{ left: `${sliderPos}%` }}>
+              <span>⟷</span>
+            </div>
 
-          <div style={{
-            position: 'absolute', top: '50%', left: `calc(${sliderPos}% + 16px)`, transform: 'translateY(-50%)',
-            background: 'rgba(8,8,8,0.8)', padding: '6px 14px',
-            fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)'
-          }}>
-            Cinematic Grade
+            {/* Cinematic label */}
+            <span className="slider-label slider-label-after" style={{ left: `calc(${sliderPos}% + 16px)` }}>
+              Cinematic Grade
+            </span>
           </div>
         </div>
       </motion.div>
@@ -184,7 +168,7 @@ export default function SignatureSection() {
             The People Behind Your Film
           </h3>
         </div>
-        <div style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '2px', overflow: 'hidden', border: '1px solid rgba(201,169,110,0.1)' }}>
+        <div className="bts-video-wrap" style={{ maxWidth: '900px', margin: '0 auto', borderRadius: '2px', overflow: 'hidden', border: '1px solid rgba(201,169,110,0.1)' }}>
           <video
             src={BTS_VIDEO}
             poster="/images/couple-portraits/DSC07391.JPG"

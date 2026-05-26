@@ -93,19 +93,14 @@ export default function FilmsSection() {
       </div>
 
       {/* Grid layout */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(5, 1fr)',
-        gap: '3px',
-        padding: '0 3px'
-      }}>
+      <div className="films-grid">
         {films.map((film, i) => {
           const colSpan = [3, 2, 2, 3, 2, 3][i]
 
           return (
             <motion.div
               key={film.title}
-              className="film-card"
+              className={`film-card film-card-col-${colSpan}`}
               style={{
                 gridColumn: `span ${colSpan}`,
                 height: '420px',

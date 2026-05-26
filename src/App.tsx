@@ -99,41 +99,35 @@ export default function App() {
         {/* Footer */}
         <footer>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '64px', marginBottom: '60px' }}>
+            <div className="footer-grid">
               <div>
                 <div className="footer-logo font-serif">AkiPra <span>Films</span></div>
                 <div className="footer-tagline">
                   Cinematic Storytellers for Indian Weddings
                 </div>
-                <p style={{ fontSize: '13px', lineHeight: '1.8', color: 'rgba(250,246,240,0.45)', maxWidth: '300px' }}>
+                <p className="footer-about-text">
                   We craft wedding films that feel like cinema and leave you moved every time you watch them.
                 </p>
               </div>
               <div>
-                <div style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold-pale)', marginBottom: '20px' }}>
-                  Navigate
-                </div>
-                <div className="footer-links" style={{ flexDirection: 'column', gap: '12px' }}>
+                <div className="footer-col-heading">Navigate</div>
+                <div className="footer-links footer-links-col">
                   {['Films', 'Stories', 'Experience', 'About', 'Contact'].map(item => (
                     <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>
                   ))}
                 </div>
               </div>
               <div>
-                <div style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold-pale)', marginBottom: '20px' }}>
-                  Services
-                </div>
-                <div className="footer-links" style={{ flexDirection: 'column', gap: '12px' }}>
+                <div className="footer-col-heading">Services</div>
+                <div className="footer-links footer-links-col">
                   {['Wedding Films', 'Candid Photography', 'Pre-Wedding', 'Destination', 'Reels'].map(item => (
                     <a key={item} href="#">{item}</a>
                   ))}
                 </div>
               </div>
               <div>
-                <div style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold-pale)', marginBottom: '20px' }}>
-                  Connect
-                </div>
-                <div className="footer-links" style={{ flexDirection: 'column', gap: '12px' }}>
+                <div className="footer-col-heading">Connect</div>
+                <div className="footer-links footer-links-col">
                   <a href="#">Instagram</a>
                   <a href="#">YouTube</a>
                   <a href="https://wa.me/919876543210">WhatsApp</a>
@@ -146,15 +140,9 @@ export default function App() {
               <div className="footer-copy">
                 © 2026 AkiPra Films. All rights reserved. Crafted with intention.
               </div>
-              <div style={{ display: 'flex', gap: '24px' }}>
+              <div className="footer-legal-links">
                 {['Privacy Policy', 'Terms', 'Sitemap'].map(item => (
-                  <a
-                    key={item}
-                    href="#"
-                    style={{ fontSize: '11px', color: 'rgba(250,246,240,0.25)', textDecoration: 'none', letterSpacing: '0.1em' }}
-                  >
-                    {item}
-                  </a>
+                  <a key={item} href="#" className="footer-legal-link">{item}</a>
                 ))}
               </div>
             </div>

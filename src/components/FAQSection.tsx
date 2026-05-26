@@ -33,7 +33,7 @@ export default function FAQSection() {
 
   return (
     <section className="faq-section" id="faq">
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', maxWidth: '1100px', margin: '0 auto' }}>
+      <div className="faq-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', maxWidth: '1100px', margin: '0 auto' }}>
         <div>
           <motion.div
             className="section-label"
